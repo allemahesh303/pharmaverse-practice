@@ -5,7 +5,7 @@
 # Run it with:   source("R/explore_dm.R")
 # (Run source("install_packages.R") once first if the libraries are missing.)
 # --------------------------------------------------------------------------
-
+source("install_packages.R")
 library(pharmaversesdtm)
 library(dplyr)
 
@@ -68,3 +68,19 @@ cat("\n")
 
 # your code here
 
+# --- 3. Sex distribution by treatment arm --------------------------------------
+
+
+sex_by_arm <- dm |> 
+  count(ARM, SEX) |>
+  arrange(ARM,desc(n))
+
+cat("Sex distribution by arm\n")
+cat("-------------------------\n")
+print(sex_by_arm)
+cat("\n")
+
+dm |> count(RACE, sort = TRUE)
+dm |> count(COUNTRY, sort = TRUE)
+
+source("R/explore_dm.R")
